@@ -20,3 +20,20 @@ rule "Initial rule"
         insert( new GameState("How old are you?", answer));
 
 end
+
+rule "Are you male or female"
+	when 
+		a: GameState(question == "How old are you?", answer == "Under 18")
+	then
+		List<String> list = Arrays.asList("Male", "Female");
+		String answer = Window.updateFrame("Are you male or female?", list);
+		insert(new GameState("Are you male or female", answer));
+end
+
+rule "Are you male or female - female"
+	when 
+		a: GameState(question == "Are you male or female", answer == "Female")
+	then
+		Window.showMatch("Twilight");	
+end
+		
