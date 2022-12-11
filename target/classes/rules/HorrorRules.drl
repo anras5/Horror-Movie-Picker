@@ -1,0 +1,22 @@
+//created on: 2022-12-11
+package com.sample
+
+import java.util.List;
+import java.util.Arrays;
+
+declare GameState
+	question: String
+	answer: String
+end
+
+
+rule "Initial rule"
+
+    when
+       	
+    then
+        List<String> list = Arrays.asList("Under 18", "Over 18");
+        String answer = Window.updateFrame("How old are you?", list);
+        insert( new GameState("How old are you?", answer));
+
+end
