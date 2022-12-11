@@ -15,9 +15,10 @@ rule "Initial rule"
     when
        	
     then
+    	String question = "How old are you?";
         List<String> list = Arrays.asList("Under 18", "Over 18");
-        String answer = Window.updateFrame("How old are you?", list);
-        insert( new GameState("How old are you?", answer));
+        String answer = Window.updateFrame(question, list);
+        insert( new GameState(question, answer));
 
 end
 
@@ -25,15 +26,49 @@ rule "Are you male or female"
 	when 
 		a: GameState(question == "How old are you?", answer == "Under 18")
 	then
+		String question = "Are you male or female?";
 		List<String> list = Arrays.asList("Male", "Female");
-		String answer = Window.updateFrame("Are you male or female?", list);
-		insert(new GameState("Are you male or female", answer));
+		String answer = Window.updateFrame(question, list);
+		insert(new GameState(question, answer));
 end
 
 rule "Are you male or female - female"
 	when 
-		a: GameState(question == "Are you male or female", answer == "Female")
+		a: GameState(question == "Are you male or female?", answer == "Female")
 	then
 		Window.showMatch("Twilight");	
 end
-		
+
+rule "Are you Catholic"
+	when 
+		a: GameState(question == "Are you male or female?", answer == "Male")
+	then
+		String question = "Are you Catholic?";
+		List<String> list = Arrays.asList("Yes", "No");
+		String answer = Window.updateFrame(question, list);
+		insert(new GameState(question, answer));
+end
+
+rule "Are you Catholic - No"
+	when 
+		a: GameState(question == "Are you Catholic?", answer == "No")
+	then
+		Window.showMatch("Slaughter Hotel");	
+end
+
+rule "Are you Catholic - Yes"
+	when
+		a: GameState(question == "Are you Catholic?", answer == "Yes")
+	then
+		Window.showMatch("Killer Nun");
+end
+
+rule "Are you more frightened of the dead or the living"
+	when
+		a: GameState(question == "How old are you?", answer == "Over 18")
+	then
+		String question = "Are you more frightened of the dead or the living?";
+		List<String> list = Arrays.asList("I'm most afraid of anything that's a little bit of both", "I'm frightened of the dead.", "I don't care as long as the devil isn't involved.", "Things that crawl scare me more than anything else.", "Have you seen the news lately? The living, no matter what planet they're from.");
+		String answer = Window.updateFrame(question, list);
+		insert(new GameState(question, answer));
+end
