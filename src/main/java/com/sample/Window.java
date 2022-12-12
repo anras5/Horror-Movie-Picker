@@ -52,12 +52,7 @@ public class Window {
 	    dialog[0].setVisible(true);
 			    
 	    return selectedValue[0];
-	    
-//	    int index = JOptionPane.showOptionDialog(null, questionValue, "Answer the question:",
-//                JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, 
-//                options.toArray(new String[options.size()]), options.get(0));
-//		
-//		return options.get(index);
+
 	}
 	
 	public static void showMatch(String title){

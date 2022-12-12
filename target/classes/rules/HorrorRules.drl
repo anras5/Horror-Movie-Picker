@@ -63,6 +63,8 @@ rule "Are you Catholic - Yes"
 		Window.showMatch("Killer Nun");
 end
 
+// **************************************************************************************** //
+
 rule "Are you more frightened of the dead or the living"
 	when
 		a: GameState(question == "How old are you?", answer == "Over 18")
@@ -72,3 +74,454 @@ rule "Are you more frightened of the dead or the living"
 		String answer = Window.updateFrame(question, list);
 		insert(new GameState(question, answer));
 end
+
+rule "Christopher Lee is..."
+	when
+		a: GameState(question == "Are you more frightened of the dead or the living?", answer == "I'm most afraid of anything that's a little bit of both")
+	then
+		String question = "Christopher Lee is...";
+		List<String> list = Arrays.asList("a legend", "That guy who played Count Dooku"); 
+		String answer = Window.updateFrame(question, list);
+		insert(new GameState(question, answer));
+end
+
+rule "Do you like hippies"
+	when
+		a: GameState(question == "Christopher Lee is...", answer == "a legend");
+	then
+		String question = "Do you like hippies?";
+		List<String> list = Arrays.asList("No", "The real terror is 19th century virginal women"); 
+		String answer = Window.updateFrame(question, list);
+		insert(new GameState(question, answer));	
+end
+
+rule "Do you like hippies - no"
+	when
+		a: GameState(question == "Do you like hippies?", answer == "No")
+	then
+		Window.showMatch("Dracula A.D. 1972");
+end
+
+rule "Do you like hippies - The real terror is 19th century virginal women"
+	when 
+		a: GameState(question == "Do you like hippies?", answer == "The real terror is 19th century virginal women");
+	then
+		Window.showMatch("The Horror of Dracula");
+end
+
+rule "I prefer my vampires..."
+	when
+		a: GameState(question == "Christopher Lee is...", answer == "That guy who played Count Dooku")
+	then
+		String question = "I prefer my vampires...";
+		List<String> list = Arrays.asList("Silent", "Eastern European", "with a big beehive hairdo"); 
+		String answer = Window.updateFrame(question, list);
+		insert(new GameState(question, answer));		
+end
+
+rule "I prefer my vampires... - Silent"
+	when
+		a: GameState(question == "I prefer my vampires...", answer == "Silent")
+	then
+		Window.showMatch("Nosferatu");
+end
+
+rule "I prefer my vampires... - Eastern European"
+	when
+		a: GameState(question == "I prefer my vampires...", answer == "Eastern European")
+	then
+		Window.showMatch("Dracula (1931)");
+end
+
+rule "I prefer my vampires... - with a big beehive hairdo"
+	when
+		a: GameState(question == "I prefer my vampires...", answer == "with a big beehive hairdo")
+	then
+		Window.showMatch("Dracula (1992)");
+end
+
+rule "Do you care if they have a body"
+	when	
+		a: GameState(question == "Are you more frightened of the dead or the living?", answer == "I'm frightened of the dead.")
+	then
+		String question = "Do you care if they have a body?";
+		List<String> list = Arrays.asList("Yes. Bodies are how they eat your brains.", "Without a body is scarier."); 
+		String answer = Window.updateFrame(question, list);
+		insert(new GameState(question, answer));		
+end
+
+rule "Can dogs look up"
+	when
+		a: GameState(question == "Do you care if they have a body?", answer == "Yes. Bodies are how they eat your brains.")
+	then
+		String question = "Can dogs look up?";
+		List<String> list = Arrays.asList("Yes", "What's all this talk of dogs? Let's go to the mall."); 
+		String answer = Window.updateFrame(question, list);
+		insert(new GameState(question, answer));	
+end
+
+rule "Can dogs look up - Yes"
+	when
+		a: GameState(question == "Can dogs look up?", answer == "Yes")
+	then
+		Window.showMatch("Shaun of the Dead");
+end
+
+rule "Can dogs look up - What's all this talk of dogs? Let's go to the mall."
+	when
+		a: GameState(question == "Can dogs look up?", answer == "What's all this talk of dogs? Let's go to the mall.")
+	then
+		Window.showMatch("Dawn of the Dead");
+end
+
+rule "Could George C. Scott protect you?"
+	when 
+		a: GameState(question == "Do you care if they have a body?", answer == "Without a body is scarier.")
+	then
+		String question = "Could George C. Scott protect you?";
+		List<String> list = Arrays.asList("Yes", "No"); 
+		String answer = Window.updateFrame(question, list);
+		insert(new GameState(question, answer));
+end
+
+rule "Could George C. Scott protect you? - No"
+	when
+		a: GameState(question == "Could George C. Scott protect you?", answer == "No")
+	then
+		Window.showMatch("Poltergeist");
+end
+
+rule "Could George C. Scott protect you? - Yes"
+	when
+		a: GameState(question == "Could George C. Scott protect you?", answer == "Yes")
+	then
+		Window.showMatch("The Changeling");
+end
+
+rule "Do you like children"
+	when 
+		a: GameState(question == "Are you more frightened of the dead or the living?", answer == "I don't care as long as the devil isn't involved.")
+	then
+		String question = "Do you like children?";
+		List<String> list = Arrays.asList("I love the cute little buggers! Especially when they're...", "No"); 
+		String answer = Window.updateFrame(question, list);
+		insert(new GameState(question, answer));
+end
+
+rule "Do you like children - No"
+	when 
+		a: GameState(question == "Do you like children?", answer == "No")
+	then
+		Window.showMatch("Haxan");
+end
+
+rule "I love the cute little buggers"
+	when 
+		a: GameState(question == "Do you like children?", answer == "I love the cute little buggers! Especially when they're...")
+	then
+		String question = "I love the cute little buggers! Especially when they're...";
+		List<String> list = Arrays.asList("in grade school.", "babies"); 
+		String answer = Window.updateFrame(question, list);
+		insert(new GameState(question, answer));	
+end
+
+rule "I love the cute little buggers - babies"
+	when
+		a: GameState(question == "I love the cute little buggers! Especially when they're...", answer == "babies")
+	then
+		Window.showMatch("Rosemary's Baby");
+end
+
+rule "Do you every want to eat pea soup again"
+	when 
+		a: GameState(question == "I love the cute little buggers! Especially when they're...", answer ==  "in grade school.")
+	then
+		String question = "Do you every want to eat pea soup again?";
+		List<String> list = Arrays.asList("Who cares?", "Yes, I love pea soup"); 
+		String answer = Window.updateFrame(question, list);
+		insert(new GameState(question, answer));
+end
+
+rule "Do you every want to eat pea soup again - who cares"
+	when
+		a: GameState(question == "Do you every want to eat pea soup again?", answer == "Who cares?")
+	then
+		Window.showMatch("The Exorcist");
+end
+
+rule "Do you every want to eat pea soup again - yes, i love pea soup"
+	when
+		a: GameState(question == "Do you every want to eat pea soup again?", answer == "Yes, I love pea soup")
+	then
+		Window.showMatch("The Omen");
+end
+
+rule "How many legs scare you the most"
+	when
+		a: GameState(question == "Are you more frightened of the dead or the living?", answer == "Things that crawl scare me more than anything else.")
+	then
+		String question = "How many legs scare you the most?";
+		List<String> list = Arrays.asList("Eight", "Six", "Other"); 
+		String answer = Window.updateFrame(question, list);
+		insert(new GameState(question, answer));
+end
+
+rule "How many legs scare you the most - other"
+	when
+		a: GameState(question == "How many legs scare you the most?", answer == "Other")
+	then
+		Window.showMatch("The Human Centipede");
+end
+
+rule "How many legs scare you the most - six"
+	when
+		a: GameState(question == "How many legs scare you the most?", answer == "Six")
+	then
+		Window.showMatch("Them!");
+end
+
+rule "I prefer films starring members of..."
+	when
+		a: GameState(question == "How many legs scare you the most?", answer == "Eight")
+	then
+		String question = "I prefer films starring members of...";
+		List<String> list = Arrays.asList("The cast of Star Trek", "The cast of Roseanne"); 
+		String answer = Window.updateFrame(question, list);
+		insert(new GameState(question, answer));
+end
+
+rule "I prefer films starring members of... - star trek"
+	when
+		a: GameState(question == "I prefer films starring members of...", answer == "The cast of Star Trek")
+	then
+		Window.showMatch("Kingdom of the Spiders");
+end
+
+rule "I prefer films starring members of... - roseanne"
+	when
+		a: GameState(question == "I prefer films starring members of...", answer == "The cast of Roseanne")
+	then
+		Window.showMatch("Arachnophobia");
+end
+
+rule "What are your feelings about dogs, hairy people, or hairy dogs"
+	when
+		a: GameState(question == "Are you more frightened of the dead or the living?", answer == "Have you seen the news lately? The living, no matter what planet they're from.")
+	then
+		String question = "What are your feelings about dogs, hairy people, or hairy dogs?";
+		List<String> list = Arrays.asList("I poop my pants every time I smell Alpo.", "Dogs and/or bearded guys are cool with me."); 
+		String answer = Window.updateFrame(question, list);
+		insert(new GameState(question, answer));
+end
+
+rule "Are you an environmentalist"
+	when
+		a: GameState(question == "What are your feelings about dogs, hairy people, or hairy dogs?", answer == "I poop my pants every time I smell Alpo.")
+	then
+		String question = "Are you an environmentalist?";
+		List<String> list = Arrays.asList("Every day is Earth Day", "Meh. I do my part but don't go nuts."); 
+		String answer = Window.updateFrame(question, list);
+		insert(new GameState(question, answer));
+end
+
+rule "Are you an environmentalist - every day is earth day"
+	when
+		a: GameState(question == "Are you an environmentalist?", answer == "Every day is Earth Day")
+	then
+		Window.showMatch("Wolfen");
+end
+
+rule "Did puberty suck"
+	when
+		a: GameState(question == "Are you an environmentalist?", answer == "Meh. I do my part but don't go nuts.")
+	then
+		String question = "Did puberty suck?";
+		List<String> list = Arrays.asList("Yes", "It wasn't so bad"); 
+		String answer = Window.updateFrame(question, list);
+		insert(new GameState(question, answer));
+end
+
+rule "Did puberty suck - yes"
+	when
+		a: GameState(question == "Did puberty suck?", answer == "Yes")
+	then
+		Window.showMatch("Ginger Snaps");
+end
+
+rule "If visiting the UK, which would you rather do"	
+	when
+		a: GameState(question == "Did puberty suck?", answer == "It wasn't so bad")
+	then
+		String question = "If visiting the UK, which would you rather do?";
+		List<String> list = Arrays.asList("Picadilly Circus, maybe an adult movie theater", "Visit a countryside..."); 
+		String answer = Window.updateFrame(question, list);
+		insert(new GameState(question, answer));
+end
+
+rule "If visiting the UK, which would you rather do - picadilly circus"
+	when
+		a: GameState(question == "If visiting the UK, which would you rather do?", answer == "Picadilly Circus, maybe an adult movie theater")
+	then
+		Window.showMatch("An American Werewolf in London");
+end
+
+rule "Visit a countryside..."
+	when
+		a: GameState(question == "If visiting the UK, which would you rather do?", answer == "Visit a countryside...")
+	then
+		String question = "Visit a countryside...";
+		List<String> list = Arrays.asList("castle.", "battlefield."); 
+		String answer = Window.updateFrame(question, list);
+		insert(new GameState(question, answer));
+end
+
+rule "Visit a countryside... - castle"
+ 	when
+ 		a: GameState(question == "Visit a countryside...", answer == "castle.")
+ 	then
+ 		Window.showMatch("The Wolf Man");
+end
+
+rule "Visit a countryside... - battlefield"
+ 	when
+ 		a: GameState(question == "Visit a countryside...", answer == "battlefield.")
+ 	then
+ 		Window.showMatch("Dog Soldiers");
+end
+
+rule "Are you worried about people with higher intelligence"
+	when
+		a: GameState(question == "What are your feelings about dogs, hairy people, or hairy dogs?", answer == "Dogs and/or bearded guys are cool with me.")
+	then
+		String question = "Are you worried about people with higher intelligence?";
+		List<String> list = Arrays.asList("Not really. Muderous maniacs, on the other hand...", "Definitely. Especially when they're..."); 
+		String answer = Window.updateFrame(question, list);
+		insert(new GameState(question, answer));
+end
+
+rule "Specifically, I'm most worried..."
+	when
+		a: GameState(question == "Are you worried about people with higher intelligence?", answer == "Not really. Muderous maniacs, on the other hand...")
+	then
+		String question = "Specifically, I'm most worried...";
+		List<String> list = Arrays.asList("of people in sweaters", "of people who take Halloween too seriously", "of overzealous hockey fans", "about Texans", "of movie nerds", "of vicious androgynous children"); 
+		String answer = Window.updateFrame(question, list);
+		insert(new GameState(question, answer));
+end
+
+rule "Specifically, I'm most worried... - people in sweaters"
+	when 
+		a: GameState(question == "Specifically, I'm most worried...", answer == "of people in sweaters")
+	then
+		Window.showMatch("A Nightmare on Elm Street");
+end
+
+rule "Specifically, I'm most worried... - people halloween"
+	when 
+		a: GameState(question == "Specifically, I'm most worried...", answer == "of people who take Halloween too seriously")
+	then
+		Window.showMatch("Halloween");
+end
+
+rule "Specifically, I'm most worried... - hockey fans"
+	when 
+		a: GameState(question == "Specifically, I'm most worried...", answer == "of overzealous hockey fans")
+	then
+		Window.showMatch("Friday the 13th");
+end
+
+rule "Specifically, I'm most worried... - texans"
+	when 
+		a: GameState(question == "Specifically, I'm most worried...", answer == "about Texans")
+	then
+		Window.showMatch("The Texas Chainsaw Massacre");
+end
+
+rule "Specifically, I'm most worried... - movie nerds"
+	when 
+		a: GameState(question == "Specifically, I'm most worried...", answer == "of movie nerds")
+	then
+		Window.showMatch("Scream");
+end
+
+rule "Specifically, I'm most worried... - children"
+	when 
+		a: GameState(question == "Specifically, I'm most worried...", answer == "of vicious androgynous children")
+	then
+		Window.showMatch("Sleepaway Camp");
+end
+
+rule "Definitely. Especially when they're.."
+	when
+		a: GameState(question == "Are you worried about people with higher intelligence?", answer == "Definitely. Especially when they're...")
+	then
+		String question = "Definitely. Especially when they're...";
+		List<String> list = Arrays.asList("from another planet", "working in a lab"); 
+		String answer = Window.updateFrame(question, list);
+		insert(new GameState(question, answer));		
+end
+
+rule "Does the circus scare you"
+	when
+		a: GameState(question == "Definitely. Especially when they're...", answer == "from another planet")
+	then
+		String question = "Does the circus scare you?";
+		List<String> list = Arrays.asList("Where clowns live? Are you crazy? No.", "Not really"); 
+		String answer = Window.updateFrame(question, list);
+		insert(new GameState(question, answer));	
+end
+
+rule "Does the circus scare you - No"
+	when
+		a: GameState(question == "Does the circus scare you?", answer == "Where clowns live? Are you crazy? No.")
+	then
+		Window.showMatch("Killer Clowns from Outer Space");
+end
+
+rule "Does the circus scare you - Not really"
+	when
+		a: GameState(question == "Does the circus scare you?", answer == "Not really")
+	then
+		Window.showMatch("Alien");
+end
+
+rule "Are you also afraid of insects"
+	when
+		a: GameState(question == "Definitely. Especially when they're...", answer == "working in a lab")
+	then
+		String question = "Are you also afraid of insects?";
+		List<String> list = Arrays.asList("I hate them.", "Things I swat with my hand? No."); 
+		String answer = Window.updateFrame(question, list);
+		insert(new GameState(question, answer));
+end
+ 
+rule "Are you also afraid of insects - hate them"
+	when
+		a: GameState(question == "Are you also afraid of insects?", answer == "I hate them.")
+	then
+		Window.showMatch("The Fly");
+end
+
+rule "How do you feel about people having sex with severed re-animated heads"
+	when
+		a: GameState(question == "Are you also afraid of insects?", answer == "Things I swat with my hand? No.")
+	then
+		String question = "How do you feel about people having sex with severed re-animated heads?";
+		List<String> list = Arrays.asList("I love seeing poeple do that thing you just said", "We're talking about corpses. Show a little decorum."); 
+		String answer = Window.updateFrame(question, list);
+		insert(new GameState(question, answer));	
+end
+
+rule "How do you feel about people - love"
+	when
+		a: GameState(question == "How do you feel about people having sex with severed re-animated heads?", answer == "I love seeing poeple do that thing you just said")
+	then
+		Window.showMatch("Re-animator");
+end
+
+rule "How do you feel about people - decorum"
+	when
+		a: GameState(question == "How do you feel about people having sex with severed re-animated heads?", answer == "We're talking about corpses. Show a little decorum.")
+	then
+		Window.showMatch("Frankenstein");
+end	
